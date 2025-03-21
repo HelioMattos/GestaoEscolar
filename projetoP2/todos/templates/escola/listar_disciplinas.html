@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista de Disciplinas</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css">
+    <style>
+        body { font-family: Arial, sans-serif; margin: 20px; }
+        h1 { text-align: center; color: #333; }
+        table { width: 60%; margin: 20px auto; border-collapse: collapse; }
+        th, td { padding: 10px; text-align: left; border-bottom: 1px solid #ddd; }
+        th { background-color: #f2f2f2; }
+        tr:hover { background-color: #f9f9f9; }
+        .container { text-align: center; margin-bottom: 20px; }
+        .button { background-color: #4CAF50; color: white; padding: 10px 20px; text-decoration: none; border-radius: 5px; }
+        .button:hover { background-color: #45a049; }
+        form { margin-bottom: 20px; }
+        input, button { padding: 10px; margin: 5px; }
+        input { width: 200px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Lista de Disciplinas</h1>
+    </div>
+
+    <!-- Formulário para adicionar disciplina -->
+    <div class="container">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="nome_disciplina" placeholder="Nome da Disciplina" required>
+            <input type="text" name="nome_professor" placeholder="Nome do Professor" required>
+            <button type="submit">Adicionar Disciplina</button>
+        </form>
+    </div>
+
+    <table>
+        <tr>
+            <th>Nome da Disciplina</th>
+            <th>Nome do Professor</th>
+        </tr>
+        {% for disciplina in disciplinas %}
+        <tr>
+            <td>{{ disciplina.nome_disciplina }}</td>
+            <td>{{ disciplina.nome_professor }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
+
